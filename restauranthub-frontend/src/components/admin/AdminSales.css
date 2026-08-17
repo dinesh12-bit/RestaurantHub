@@ -1,0 +1,836 @@
+/* =========================================================
+   ADMIN SALES
+========================================================= */
+
+.sales-page {
+    width: 100%;
+    min-height: 100%;
+
+    box-sizing: border-box;
+
+    background: #0d0d0d;
+    color: #ffffff;
+
+    padding: 34px 36px;
+}
+
+.sales-container {
+    width: 100%;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.sales-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 28px;
+}
+
+.sales-header h1 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.sales-header p {
+    margin: 6px 0 0;
+
+    color: #858585;
+
+    font-size: 13px;
+}
+
+.sales-refresh {
+    height: 40px;
+
+    padding: 0 16px;
+
+    background: transparent;
+
+    border: 1px solid #353535;
+    border-radius: 5px;
+
+    color: #cccccc;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.sales-refresh:hover {
+    border-color: #ff6900;
+
+    color: #ff6900;
+}
+
+
+/* =========================================================
+   SUMMARY CARDS
+========================================================= */
+
+.sales-cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 15px;
+
+    margin-bottom: 22px;
+}
+
+.sales-card {
+    min-height: 125px;
+
+    box-sizing: border-box;
+
+    padding: 18px;
+
+    background: #151515;
+
+    border: 1px solid #292929;
+    border-radius: 8px;
+
+    transition:
+            border-color 0.2s ease,
+            transform 0.2s ease;
+}
+
+.sales-card:hover {
+    border-color: #ff6900;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   CARD TOP
+========================================================= */
+
+.sales-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+.sales-card-top > span {
+    color: #858585;
+
+    font-size: 11px;
+}
+
+.sales-icon {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ICON COLORS
+========================================================= */
+
+.sales-icon.orange {
+    background: #28170c;
+
+    border: 1px solid #4d2a13;
+
+    color: #ff6900;
+}
+
+.sales-icon.blue,
+.sales-icon.green,
+.sales-icon.purple,
+.sales-icon.yellow,
+.sales-icon.red {
+    background: #202020;
+
+    border: 1px solid #353535;
+
+    color: #aaaaaa;
+}
+
+
+/* =========================================================
+   CARD VALUE
+========================================================= */
+
+.sales-card h2 {
+    margin: 14px 0 5px;
+
+    color: #ffffff;
+
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.sales-card p {
+    margin: 0;
+
+    color: #666666;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   REVENUE SECTION
+========================================================= */
+
+.revenue-section {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 22px;
+
+    background: #151515;
+
+    border: 1px solid #292929;
+    border-radius: 8px;
+}
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.section-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+.section-heading h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.section-heading p {
+    margin: 5px 0 0;
+
+    color: #777777;
+
+    font-size: 11px;
+}
+
+.section-heading strong {
+    color: #ff6900;
+
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   CHART AREA
+========================================================= */
+
+.chart-area {
+    display: flex;
+
+    width: 100%;
+    height: 330px;
+}
+
+
+/* =========================================================
+   Y LABELS
+========================================================= */
+
+.chart-y-labels {
+    width: 78px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 5px 10px 28px 0;
+
+    box-sizing: border-box;
+
+    text-align: right;
+}
+
+.chart-y-labels span {
+    color: #666666;
+
+    font-size: 9px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   CHART
+========================================================= */
+
+.chart {
+    position: relative;
+
+    flex: 1;
+
+    min-width: 0;
+
+    height: 100%;
+
+    border-bottom: 1px solid #333333;
+}
+
+
+/* =========================================================
+   GRID LINES
+========================================================= */
+
+.chart-grid {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    border-top: 1px dashed #292929;
+}
+
+.chart-grid.top {
+    top: 5px;
+}
+
+.chart-grid.middle {
+    top: 50%;
+}
+
+.chart-grid.bottom {
+    bottom: 28px;
+}
+
+
+/* =========================================================
+   BARS
+========================================================= */
+
+.chart-bars {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    top: 5px;
+    bottom: 0;
+
+    display: flex;
+    align-items: flex-end;
+
+    gap: 5px;
+
+    overflow-x: auto;
+
+    padding: 0 5px;
+
+    box-sizing: border-box;
+}
+
+.chart-bars::-webkit-scrollbar {
+    height: 4px;
+}
+
+.chart-bars::-webkit-scrollbar-track {
+    background: #171717;
+}
+
+.chart-bars::-webkit-scrollbar-thumb {
+    background: #383838;
+
+    border-radius: 4px;
+}
+
+
+/* =========================================================
+   BAR COLUMN
+========================================================= */
+
+.bar-column {
+    position: relative;
+
+    flex: 1;
+
+    min-width: 22px;
+    max-width: 48px;
+
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+/* =========================================================
+   BAR VALUE
+========================================================= */
+
+.bar-value {
+    position: absolute;
+
+    bottom: calc(28px + var(--bar-height, 0%));
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: #aaaaaa;
+
+    font-size: 8px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   BAR HOLDER
+========================================================= */
+
+.bar-holder {
+    width: 100%;
+    height: calc(100% - 28px);
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.revenue-bar {
+    width: 55%;
+
+    min-width: 7px;
+
+    max-width: 24px;
+
+    background: #ff6900;
+
+    border-radius: 3px 3px 0 0;
+
+    transition:
+            height 0.25s ease,
+            opacity 0.2s ease;
+}
+
+.revenue-bar:hover {
+    opacity: 0.75;
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+.bar-date {
+    width: 100%;
+
+    height: 28px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    color: #666666;
+
+    font-size: 8px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   NO SALES
+========================================================= */
+
+.no-sales {
+    height: 280px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.no-sales > div {
+    margin-bottom: 12px;
+
+    color: #ff6900;
+
+    font-size: 28px;
+}
+
+.no-sales p {
+    margin: 0;
+
+    color: #777777;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.sales-loading {
+    min-height: 350px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    color: #777777;
+}
+
+.sales-loader {
+    width: 28px;
+    height: 28px;
+
+    margin-bottom: 13px;
+
+    border: 2px solid #292929;
+    border-top-color: #ff6900;
+
+    border-radius: 50%;
+
+    animation: sales-spin 0.8s linear infinite;
+}
+
+.sales-loading p {
+    margin: 0;
+
+    font-size: 12px;
+}
+
+@keyframes sales-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.sales-error {
+    max-width: 450px;
+
+    margin: 70px auto;
+
+    padding: 28px;
+
+    box-sizing: border-box;
+
+    background: #171313;
+
+    border: 1px solid #432626;
+    border-radius: 8px;
+
+    text-align: center;
+}
+
+.sales-error-icon {
+    width: 38px;
+    height: 38px;
+
+    margin: 0 auto 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #281818;
+
+    color: #d87979;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.sales-error h2 {
+    margin: 0 0 7px;
+
+    color: #eeeeee;
+
+    font-size: 17px;
+}
+
+.sales-error p {
+    margin: 0 0 18px;
+
+    color: #888888;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+.sales-error button {
+    height: 37px;
+
+    padding: 0 17px;
+
+    background: transparent;
+
+    border: 1px solid #553030;
+    border-radius: 5px;
+
+    color: #d87979;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.sales-error button:hover {
+    background: #291818;
+
+    border-color: #874848;
+
+    color: #ff9999;
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.sales-empty {
+    min-height: 300px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.sales-empty h2 {
+    margin: 0 0 7px;
+
+    color: #dddddd;
+
+    font-size: 18px;
+}
+
+.sales-empty p {
+    margin: 0;
+
+    color: #777777;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   LARGE TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .sales-page {
+        padding: 28px 25px;
+    }
+
+    .sales-cards {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 750px) {
+
+    .sales-page {
+        padding: 22px 18px;
+    }
+
+    .sales-header h1 {
+        font-size: 26px;
+    }
+
+    .sales-cards {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 12px;
+    }
+
+    .sales-card {
+        min-height: 115px;
+
+        padding: 15px;
+    }
+
+    .revenue-section {
+        padding: 17px;
+    }
+
+    .chart-area {
+        height: 290px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 550px) {
+
+    .sales-page {
+        padding: 18px 13px;
+    }
+
+    .sales-header {
+        flex-direction: column;
+
+        gap: 14px;
+    }
+
+    .sales-header h1 {
+        font-size: 23px;
+    }
+
+    .sales-header p {
+        font-size: 11px;
+    }
+
+    .sales-refresh {
+        width: 100%;
+    }
+
+    .sales-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .sales-card {
+        min-height: 105px;
+    }
+
+    .sales-card h2 {
+        font-size: 21px;
+    }
+
+    .section-heading {
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+    .section-heading h2 {
+        font-size: 17px;
+    }
+
+    .section-heading strong {
+        font-size: 15px;
+    }
+
+    .revenue-section {
+        padding: 15px;
+    }
+
+    .chart-area {
+        height: 270px;
+    }
+
+    .chart-y-labels {
+        width: 65px;
+
+        padding-right: 7px;
+    }
+
+    .chart-bars {
+        gap: 3px;
+    }
+
+    .bar-column {
+        min-width: 18px;
+    }
+
+    .revenue-bar {
+        width: 60%;
+    }
+
+    .bar-value {
+        display: none;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .sales-page {
+        padding: 15px 10px;
+    }
+
+    .sales-card {
+        padding: 14px;
+    }
+
+    .sales-card h2 {
+        font-size: 19px;
+    }
+
+    .sales-icon {
+        width: 31px;
+        height: 31px;
+    }
+
+    .revenue-section {
+        padding: 13px;
+    }
+
+    .chart-y-labels {
+        width: 58px;
+    }
+}

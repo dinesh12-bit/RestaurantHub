@@ -1,0 +1,1083 @@
+/* =========================================================
+  RESTAURANTHUB - POPULAR DISHES
+  PREMIUM DARK + ORANGE FOOD CAROUSEL
+========================================================= */
+
+.popular-dishes {
+    width: 100%;
+    padding: 38px 48px 45px;
+
+    background: #0b0b0b;
+    color: #ffffff;
+
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.popular-heading {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+    margin-bottom: 22px;
+
+    box-sizing: border-box;
+}
+
+.popular-heading h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 23px;
+    font-weight: 750;
+    line-height: 1.2;
+}
+
+.popular-heading h2 span {
+    color: #ff6b00;
+}
+
+.popular-subtitle {
+    margin: 5px 0 0;
+
+    color: #888888;
+
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   VIEW ALL
+========================================================= */
+
+.view-all-btn {
+    display: flex;
+    align-items: center;
+
+    gap: 4px;
+
+    flex-shrink: 0;
+
+    padding: 6px 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #cccccc;
+
+    font-family: inherit;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition: color 0.2s ease;
+}
+
+.view-all-btn:hover {
+    color: #ff6b00;
+}
+
+.view-all-btn span {
+    color: #ff6b00;
+
+    font-size: 19px;
+    line-height: 1;
+}
+
+
+/* =========================================================
+   DISH CAROUSEL
+========================================================= */
+
+.dish-list {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+
+    flex-wrap: nowrap;
+
+    gap: 18px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding: 4px 2px 16px;
+
+    box-sizing: border-box;
+
+    scroll-behavior: smooth;
+
+    scroll-snap-type: x mandatory;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: none;
+}
+
+.dish-list::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* =========================================================
+   DISH CARD
+========================================================= */
+
+.dish-card {
+    flex: 0 0 280px;
+
+    width: 280px;
+
+    min-width: 280px;
+    max-width: 280px;
+
+    background: #151515;
+
+    border: 1px solid #292929;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    color: #ffffff;
+
+    box-sizing: border-box;
+
+    scroll-snap-align: start;
+
+    transition:
+            border-color 0.2s ease,
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+}
+
+.dish-card:hover {
+    transform: translateY(-4px);
+
+    border-color: rgba(255, 107, 0, 0.65);
+
+    box-shadow:
+            0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+
+/* =========================================================
+   FOOD IMAGE
+========================================================= */
+
+.dish-image {
+    position: relative;
+
+    width: 100%;
+
+    height: 215px;
+
+    overflow: hidden;
+
+    background: #202020;
+
+    box-sizing: border-box;
+}
+
+.dish-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    transition:
+            transform 0.3s ease;
+}
+
+.dish-card:hover .dish-image img {
+    transform: scale(1.04);
+}
+
+
+/* =========================================================
+   BADGE
+========================================================= */
+
+.dish-badge {
+    position: absolute;
+
+    top: 12px;
+    left: 12px;
+
+    z-index: 2;
+
+    padding: 6px 9px;
+
+    border-radius: 6px;
+
+    background: #ff6b00;
+
+    color: #ffffff;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    line-height: 1;
+
+    white-space: nowrap;
+
+    box-shadow:
+            0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.dish-content {
+    width: 100%;
+
+    padding: 15px;
+
+    box-sizing: border-box;
+}
+
+.dish-content h3 {
+    margin: 0 0 7px;
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    line-height: 1.3;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.dish-description {
+    margin: 0;
+
+    height: 34px;
+
+    color: #969696;
+
+    font-size: 9px;
+
+    line-height: 1.5;
+
+    overflow: hidden;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+
+/* =========================================================
+   PRICE + RATING
+========================================================= */
+
+.dish-bottom {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 8px;
+
+    margin-top: 13px;
+
+    box-sizing: border-box;
+}
+
+.dish-bottom strong {
+    color: #ff6b00;
+
+    font-size: 16px;
+    font-weight: 750;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   RATING
+========================================================= */
+
+.dish-rating {
+    display: flex;
+
+    align-items: center;
+
+    gap: 4px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+}
+
+.dish-rating .star {
+    color: #ffb000;
+
+    font-size: 13px;
+}
+
+.dish-rating .review-count {
+    color: #777777;
+}
+
+
+/* =========================================================
+   ADD TO CART
+========================================================= */
+
+.add-cart-btn {
+    width: 100%;
+
+    height: 42px;
+
+    margin-top: 12px;
+
+    padding: 0 13px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #ff6b00;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition:
+            background 0.2s ease,
+            transform 0.15s ease;
+}
+
+.add-cart-btn:hover {
+    background: #ff8126;
+}
+
+.add-cart-btn:active {
+    transform: scale(0.98);
+}
+
+.add-cart-btn:disabled {
+    opacity: 0.65;
+
+    cursor: not-allowed;
+}
+
+.cart-plus {
+    font-size: 19px;
+
+    font-weight: 400;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   VIEW REVIEWS
+========================================================= */
+
+.view-reviews-btn {
+    width: 100%;
+
+    height: 38px;
+
+    margin-top: 9px;
+
+    padding: 0 10px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #ff6b00;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #ff6b00;
+
+    font-family: inherit;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition:
+            background 0.2s ease,
+            color 0.2s ease;
+}
+
+.view-reviews-btn:hover {
+    background: #ff6b00;
+
+    color: #ffffff;
+}
+
+.view-reviews-btn:focus {
+    outline: none;
+}
+
+
+/* =========================================================
+   FOOD REVIEWS
+========================================================= */
+
+.food-reviews-wrapper {
+    width: 100%;
+
+    margin: 35px auto 0;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+.food-reviews-wrapper .reviews-section {
+    width: 100%;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.popular-loading {
+    width: 100%;
+
+    padding: 50px 20px;
+
+    text-align: center;
+
+    color: #777777;
+
+    font-size: 14px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.popular-error {
+    width: 100%;
+
+    padding: 18px;
+
+    border-radius: 10px;
+
+    background: #251313;
+
+    border: 1px solid #542222;
+
+    color: #ff7777;
+
+    text-align: center;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.popular-empty {
+    width: 100%;
+
+    padding: 50px 20px;
+
+    border-radius: 12px;
+
+    background: #151515;
+
+    border: 1px solid #292929;
+
+    color: #777777;
+
+    text-align: center;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1400px) {
+
+    .popular-dishes {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+
+    .dish-list {
+        gap: 20px;
+    }
+
+    .dish-card {
+        flex-basis: 320px;
+
+        width: 320px;
+
+        min-width: 320px;
+        max-width: 320px;
+    }
+
+    .dish-image {
+        height: 240px;
+    }
+}
+
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .popular-dishes {
+        padding:
+                35px
+                30px
+                40px;
+    }
+
+    .dish-list {
+        gap: 16px;
+    }
+
+    .dish-card {
+        flex-basis: 270px;
+
+        width: 270px;
+
+        min-width: 270px;
+        max-width: 270px;
+    }
+
+    .dish-image {
+        height: 205px;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .popular-dishes {
+        padding:
+                30px
+                24px
+                38px;
+    }
+
+    .popular-heading {
+        margin-bottom: 18px;
+    }
+
+    .popular-heading h2 {
+        font-size: 21px;
+    }
+
+    .dish-list {
+        gap: 14px;
+
+        padding-bottom: 14px;
+
+        scroll-snap-type: x mandatory;
+    }
+
+    .dish-card {
+        flex-basis: 300px;
+
+        width: 300px;
+
+        min-width: 300px;
+        max-width: 300px;
+    }
+
+    .dish-image {
+        height: 220px;
+    }
+
+    .dish-content {
+        padding: 14px;
+    }
+
+    .dish-content h3 {
+        font-size: 14px;
+    }
+
+    .dish-description {
+        font-size: 9px;
+    }
+
+    .add-cart-btn {
+        height: 40px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ONE FULL CARD AT A TIME
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .popular-dishes {
+        padding:
+                26px
+                14px
+                35px;
+    }
+
+    .popular-heading {
+        margin-bottom: 17px;
+    }
+
+    .popular-heading h2 {
+        font-size: 19px;
+    }
+
+    .popular-subtitle {
+        font-size: 9px;
+    }
+
+    .view-all-btn {
+        font-size: 10px;
+    }
+
+
+    /* -----------------------------------------
+       MOBILE CAROUSEL
+    ----------------------------------------- */
+
+    .dish-list {
+        width: 100%;
+
+        display: flex;
+
+        gap: 12px;
+
+        padding:
+                3px
+                0
+                14px;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        scroll-snap-type: x mandatory;
+
+        scroll-padding-left: 0;
+
+        -webkit-overflow-scrolling: touch;
+
+        scrollbar-width: none;
+    }
+
+    .dish-list::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    /* -----------------------------------------
+       FULL WIDTH CARD
+    ----------------------------------------- */
+
+    .dish-card {
+        flex: 0 0 100%;
+
+        width: 100%;
+
+        min-width: 100%;
+        max-width: 100%;
+
+        border-radius: 16px;
+
+        border: 1px solid rgba(255, 107, 0, 0.45);
+
+        scroll-snap-align: start;
+
+        scroll-snap-stop: always;
+    }
+
+
+    /* -----------------------------------------
+       LARGE FOOD IMAGE
+    ----------------------------------------- */
+
+    .dish-image {
+        width: 100%;
+
+        height: 280px;
+
+        background: #202020;
+    }
+
+    .dish-image img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+
+        object-position: center;
+    }
+
+
+    /* -----------------------------------------
+       BADGE
+    ----------------------------------------- */
+
+    .dish-badge {
+        top: 14px;
+        left: 14px;
+
+        padding: 7px 11px;
+
+        border-radius: 7px;
+
+        font-size: 10px;
+    }
+
+
+    /* -----------------------------------------
+       CONTENT
+    ----------------------------------------- */
+
+    .dish-content {
+        padding: 16px;
+    }
+
+    .dish-content h3 {
+        font-size: 17px;
+
+        margin-bottom: 8px;
+    }
+
+    .dish-description {
+        height: 38px;
+
+        font-size: 10px;
+
+        line-height: 1.6;
+    }
+
+
+    /* -----------------------------------------
+       PRICE + RATING
+    ----------------------------------------- */
+
+    .dish-bottom {
+        margin-top: 14px;
+    }
+
+    .dish-bottom strong {
+        font-size: 18px;
+    }
+
+    .dish-rating {
+        font-size: 10px;
+
+        gap: 4px;
+    }
+
+    .dish-rating .star {
+        font-size: 14px;
+    }
+
+
+    /* -----------------------------------------
+       ADD CART
+    ----------------------------------------- */
+
+    .add-cart-btn {
+        height: 46px;
+
+        margin-top: 13px;
+
+        padding: 0 15px;
+
+        border-radius: 9px;
+
+        font-size: 12px;
+    }
+
+    .cart-plus {
+        font-size: 21px;
+    }
+
+
+    /* -----------------------------------------
+       REVIEWS
+    ----------------------------------------- */
+
+    .view-reviews-btn {
+        height: 41px;
+
+        margin-top: 9px;
+
+        border-radius: 9px;
+
+        font-size: 10px;
+    }
+
+    .food-reviews-wrapper {
+        margin-top: 25px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   430px AND BELOW
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .popular-dishes {
+        padding:
+                24px
+                10px
+                32px;
+    }
+
+    .popular-heading h2 {
+        font-size: 18px;
+    }
+
+    .popular-subtitle {
+        display: none;
+    }
+
+
+    /* -----------------------------------------
+       CAROUSEL
+    ----------------------------------------- */
+
+    .dish-list {
+        width: 100%;
+
+        gap: 10px;
+
+        padding:
+                3px
+                0
+                14px;
+
+        scroll-snap-type: x mandatory;
+    }
+
+
+    /* -----------------------------------------
+       ONE COMPLETE CARD
+    ----------------------------------------- */
+
+    .dish-card {
+        flex: 0 0 100%;
+
+        width: 100%;
+
+        min-width: 100%;
+        max-width: 100%;
+
+        border-radius: 15px;
+
+        scroll-snap-align: start;
+
+        scroll-snap-stop: always;
+    }
+
+
+    /* -----------------------------------------
+       BIGGER IMAGE
+    ----------------------------------------- */
+
+    .dish-image {
+        height: 285px;
+    }
+
+    .dish-image img {
+        object-fit: cover;
+        object-position: center;
+    }
+
+
+    /* -----------------------------------------
+       CONTENT
+    ----------------------------------------- */
+
+    .dish-content {
+        padding: 15px;
+    }
+
+    .dish-content h3 {
+        font-size: 16px;
+
+        margin-bottom: 7px;
+    }
+
+    .dish-description {
+        font-size: 9.5px;
+
+        height: 35px;
+    }
+
+
+    /* -----------------------------------------
+       PRICE
+    ----------------------------------------- */
+
+    .dish-bottom strong {
+        font-size: 17px;
+    }
+
+
+    /* -----------------------------------------
+       BUTTONS
+    ----------------------------------------- */
+
+    .add-cart-btn {
+        height: 44px;
+
+        font-size: 11px;
+    }
+
+    .view-reviews-btn {
+        height: 39px;
+
+        font-size: 10px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 350px) {
+
+    .popular-dishes {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .dish-list {
+        gap: 8px;
+
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .dish-card {
+        flex: 0 0 100%;
+
+        width: 100%;
+
+        min-width: 100%;
+        max-width: 100%;
+    }
+
+    .dish-image {
+        height: 250px;
+    }
+
+    .dish-content {
+        padding: 13px;
+    }
+
+    .dish-content h3 {
+        font-size: 15px;
+    }
+
+    .dish-description {
+        font-size: 9px;
+    }
+
+    .add-cart-btn {
+        height: 42px;
+
+        font-size: 10px;
+    }
+
+    .view-reviews-btn {
+        height: 37px;
+
+        font-size: 9px;
+    }
+}

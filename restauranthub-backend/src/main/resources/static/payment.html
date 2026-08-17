@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Hub Payment</title>
+</head>
+<body>
+
+<h2>Restaurant Hub - Test Payment</h2>
+
+<button onclick="payNow()">Pay ₹798</button>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+
+    function payNow() {
+
+    const options = {
+
+        key: "rzp_test_TNH8JDOMvwz7xf",
+
+        amount: 71820,
+
+        currency: "INR",
+
+        name: "Restaurant Hub",
+
+        description: "Order #8",
+
+        order_id: "order_TNlmLeSQLWgZ0M",
+
+        handler: function (response) {
+
+            alert(
+                "Payment ID: " +
+                response.razorpay_payment_id
+            );
+
+            alert(
+                "Order ID: " +
+                response.razorpay_order_id
+            );
+
+            alert(
+                "Signature: " +
+                response.razorpay_signature
+            );
+
+            console.log(response);
+        },
+
+        theme: {
+            color: "#3399cc"
+        }
+    };
+
+    const rzp = new Razorpay(options);
+
+    rzp.open();
+}
+</script>
+
+</body>
+</html>

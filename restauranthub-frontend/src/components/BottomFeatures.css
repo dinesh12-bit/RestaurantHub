@@ -1,0 +1,388 @@
+/* =========================================================
+   RESTAURANTHUB - BOTTOM FEATURES
+========================================================= */
+
+.bottom-features {
+    width: 100%;
+
+    padding: 0 48px 40px;
+
+    background: #0b0b0b;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.bottom-features-inner {
+    width: 100%;
+
+    min-height: 78px;
+
+    padding: 12px 20px;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    align-items: center;
+
+    background: #151515;
+
+    border: 1px solid #292929;
+
+    border-radius: 13px;
+
+    color: #ffffff;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   FEATURE
+========================================================= */
+
+.bottom-feature {
+    min-width: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 11px;
+
+    padding: 8px 15px;
+
+    box-sizing: border-box;
+
+    border-right: 1px solid #303030;
+}
+
+.bottom-feature:last-child {
+    border-right: none;
+}
+
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.bottom-feature-icon {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: rgba(255, 107, 0, 0.10);
+
+    border: 1px solid rgba(255, 107, 0, 0.20);
+
+    color: #ff6b00;
+
+    font-size: 19px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+.bottom-feature h3 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    line-height: 1.3;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.bottom-feature p {
+    margin: 4px 0 0;
+
+    color: #858585;
+
+    font-size: 9px;
+
+    line-height: 1.3;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1400px) {
+
+    .bottom-features {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+
+    .bottom-features-inner {
+        min-height: 82px;
+    }
+
+    .bottom-feature {
+        gap: 12px;
+    }
+
+    .bottom-feature-icon {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+
+/* =========================================================
+   LARGE TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .bottom-features {
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-bottom: 35px;
+    }
+
+    .bottom-features-inner {
+        padding: 12px 10px;
+    }
+
+    .bottom-feature {
+        padding: 8px 10px;
+
+        gap: 9px;
+    }
+
+    .bottom-feature-icon {
+        width: 35px;
+        height: 35px;
+
+        font-size: 17px;
+    }
+
+    .bottom-feature h3 {
+        font-size: 10px;
+    }
+
+    .bottom-feature p {
+        font-size: 8px;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .bottom-features {
+        padding: 0 24px 32px;
+    }
+
+    .bottom-features-inner {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        gap: 0;
+
+        padding: 12px 8px;
+    }
+
+    .bottom-feature {
+        min-height: 55px;
+
+        justify-content: flex-start;
+
+        padding: 8px 12px;
+
+        border-right: none;
+    }
+
+    .bottom-feature:nth-child(1),
+    .bottom-feature:nth-child(2) {
+        border-bottom: 1px solid #292929;
+    }
+
+    .bottom-feature:nth-child(1),
+    .bottom-feature:nth-child(3) {
+        border-right: 1px solid #303030;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .bottom-features {
+        padding: 0 14px 28px;
+    }
+
+    .bottom-features-inner {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        padding: 10px 6px;
+
+        border-radius: 11px;
+    }
+
+    .bottom-feature {
+        min-width: 0;
+
+        gap: 8px;
+
+        padding: 10px 7px;
+    }
+
+    .bottom-feature:nth-child(1),
+    .bottom-feature:nth-child(2) {
+        border-bottom: 1px solid #292929;
+    }
+
+    .bottom-feature:nth-child(1),
+    .bottom-feature:nth-child(3) {
+        border-right: 1px solid #303030;
+    }
+
+    .bottom-feature-icon {
+        width: 32px;
+        height: 32px;
+
+        border-radius: 8px;
+
+        font-size: 16px;
+    }
+
+    .bottom-feature h3 {
+        font-size: 8.5px;
+    }
+
+    .bottom-feature p {
+        margin-top: 3px;
+
+        font-size: 7px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .bottom-features {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 25px;
+    }
+
+    .bottom-features-inner {
+        padding: 8px 4px;
+    }
+
+    .bottom-feature {
+        gap: 6px;
+
+        padding: 9px 5px;
+    }
+
+    .bottom-feature-icon {
+        width: 29px;
+        height: 29px;
+
+        font-size: 14px;
+    }
+
+    .bottom-feature h3 {
+        font-size: 8px;
+    }
+
+    .bottom-feature p {
+        font-size: 6.5px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 350px) {
+
+    .bottom-features {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .bottom-features-inner {
+        grid-template-columns: 1fr;
+
+        padding: 8px;
+    }
+
+    .bottom-feature {
+        min-height: 48px;
+
+        justify-content: flex-start;
+
+        padding: 7px 8px;
+
+        border-right: none !important;
+
+        border-bottom: 1px solid #292929;
+    }
+
+    .bottom-feature:last-child {
+        border-bottom: none;
+    }
+
+    .bottom-feature-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .bottom-feature h3 {
+        font-size: 9px;
+    }
+
+    .bottom-feature p {
+        font-size: 7px;
+    }
+}

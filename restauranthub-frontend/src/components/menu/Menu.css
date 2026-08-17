@@ -1,0 +1,605 @@
+/* =========================================================
+   MENU PAGE
+========================================================= */
+
+.menu-page {
+    width: 100%;
+    min-height: 100vh;
+    background: #0b0b0b;
+    color: #ffffff;
+    padding: 42px 40px 70px;
+    box-sizing: border-box;
+}
+
+.menu-wrapper {
+    width: 100%;
+    max-width: 1270px;
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.menu-header {
+    margin-bottom: 27px;
+}
+
+.menu-label {
+    margin: 0 0 8px;
+    color: #ff6900;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.menu-header h1 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 40px;
+    line-height: 1.1;
+    font-weight: 800;
+}
+
+.menu-header h1 span {
+    color: #ff6900;
+}
+
+.menu-subtitle {
+    margin: 9px 0 0;
+    color: #888888;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   CATEGORY BUTTONS
+========================================================= */
+
+.menu-categories {
+    display: flex;
+    gap: 9px;
+
+    overflow-x: auto;
+
+    margin-bottom: 36px;
+    padding-bottom: 4px;
+
+    scrollbar-width: none;
+}
+
+.menu-categories::-webkit-scrollbar {
+    display: none;
+}
+
+.menu-category {
+    flex-shrink: 0;
+
+    padding: 9px 18px;
+
+    border: 1px solid #303030;
+    border-radius: 24px;
+
+    background: #151515;
+    color: #aaaaaa;
+
+    font-family: inherit;
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.menu-category:hover {
+    color: #ffffff;
+    border-color: #ff6900;
+}
+
+.menu-category.active {
+    color: #ffffff;
+    background: #ff6900;
+    border-color: #ff6900;
+}
+
+
+/* =========================================================
+   FOOD HEADER
+========================================================= */
+
+.food-list-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    margin-bottom: 14px;
+}
+
+.food-list-header h2 {
+    margin: 0;
+
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 750;
+}
+
+.food-list-header p {
+    margin: 5px 0 0;
+
+    color: #777777;
+    font-size: 11px;
+}
+
+.food-list-header > span {
+    color: #888888;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   FOOD LIST
+========================================================= */
+
+.food-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+/* =========================================================
+   FOOD ROW
+========================================================= */
+
+.food-row {
+    width: 100%;
+
+    min-height: 160px;
+
+    display: flex;
+
+    overflow: hidden;
+
+    background: #151515;
+
+    border: 1px solid #2c2c2c;
+
+    border-radius: 12px;
+
+    box-sizing: border-box;
+
+    transition:
+            border-color 0.2s ease,
+            transform 0.2s ease;
+}
+
+.food-row:hover {
+    border-color: #ff6900;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   FOOD IMAGE
+========================================================= */
+
+.food-image-box {
+    width: 155px;
+    min-width: 155px;
+
+    height: 160px;
+
+    overflow: hidden;
+
+    background: #111111;
+}
+
+.food-image-box img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    transition: transform 0.25s ease;
+}
+
+.food-row:hover .food-image-box img {
+    transform: scale(1.03);
+}
+
+
+/* =========================================================
+   FOOD DETAILS
+========================================================= */
+
+.food-details {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 18px 19px 15px;
+}
+
+
+/* =========================================================
+   NAME + RATING
+========================================================= */
+
+.food-name-rating {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.food-name-rating h3 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+
+/* =========================================================
+   RATING
+========================================================= */
+
+.food-rating {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    flex-shrink: 0;
+}
+
+.rating-stars {
+    display: flex;
+    gap: 1px;
+}
+
+.star {
+    color: #414141;
+    font-size: 11px;
+}
+
+.star.filled {
+    color: #ff8a00;
+}
+
+.rating-number {
+    color: #ffffff;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.rating-count {
+    color: #777777;
+    font-size: 9px;
+}
+
+.food-no-rating {
+    flex-shrink: 0;
+
+    color: #666666;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.food-description {
+    max-width: 720px;
+
+    margin: 8px 0 0;
+
+    color: #858585;
+
+    font-size: 10px;
+
+    line-height: 1.6;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   BOTTOM
+========================================================= */
+
+.food-bottom {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding-top: 11px;
+
+    border-top: 1px solid #292929;
+}
+
+.food-price {
+    color: #ff6900;
+
+    font-size: 17px;
+
+    font-weight: 750;
+}
+
+
+/* =========================================================
+   ADD BUTTON
+========================================================= */
+
+.add-food-btn {
+    min-width: 74px;
+    height: 34px;
+
+    padding: 0 12px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    border: 1px solid #ff6900;
+    border-radius: 6px;
+
+    background: #ff6900;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.add-food-btn:hover {
+    background: #e95f00;
+    border-color: #e95f00;
+}
+
+.add-food-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.add-food-btn span {
+    font-size: 15px;
+    line-height: 1;
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty-food {
+    min-height: 220px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #151515;
+
+    border: 1px solid #292929;
+
+    border-radius: 12px;
+
+    text-align: center;
+}
+
+.empty-food h3 {
+    margin: 0;
+    font-size: 17px;
+}
+
+.empty-food p {
+    margin: 7px 0 0;
+
+    color: #777777;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.menu-loading {
+    min-height: 60vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #777777;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .menu-page {
+        padding: 35px 24px 55px;
+    }
+
+    .food-row {
+        min-height: 150px;
+    }
+
+    .food-image-box {
+        width: 145px;
+        min-width: 145px;
+        height: 150px;
+    }
+
+    .food-details {
+        padding: 17px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 620px) {
+
+    .menu-page {
+        padding: 28px 14px 50px;
+    }
+
+    .menu-header h1 {
+        font-size: 33px;
+    }
+
+    .menu-categories {
+        margin-bottom: 28px;
+    }
+
+    .food-list-header h2 {
+        font-size: 21px;
+    }
+
+    .food-row {
+        min-height: 135px;
+    }
+
+    .food-image-box {
+        width: 130px;
+        min-width: 130px;
+        height: 135px;
+    }
+
+    .food-details {
+        padding: 13px;
+    }
+
+    .food-name-rating {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .food-name-rating h3 {
+        font-size: 14px;
+    }
+
+    .food-description {
+        margin-top: 6px;
+        font-size: 9px;
+    }
+
+    .food-bottom {
+        padding-top: 8px;
+    }
+
+    .food-price {
+        font-size: 15px;
+    }
+
+    .add-food-btn {
+        min-width: 64px;
+        height: 31px;
+
+        padding: 0 9px;
+
+        font-size: 10px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .menu-page {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .food-row {
+        min-height: 120px;
+    }
+
+    .food-image-box {
+        width: 115px;
+        min-width: 115px;
+        height: 120px;
+    }
+
+    .food-details {
+        padding: 10px;
+    }
+
+    .food-name-rating h3 {
+        font-size: 12px;
+    }
+
+    .food-description {
+        font-size: 8px;
+    }
+
+    .rating-number,
+    .rating-count,
+    .food-no-rating {
+        font-size: 8px;
+    }
+
+    .star {
+        font-size: 8px;
+    }
+
+    .food-price {
+        font-size: 14px;
+    }
+
+    .add-food-btn {
+        min-width: 57px;
+        height: 28px;
+
+        font-size: 9px;
+    }
+}

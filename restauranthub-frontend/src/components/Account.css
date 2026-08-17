@@ -1,0 +1,170 @@
+.account-page {
+    min-height: calc(100vh - 76px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+
+    background: #f5f2ec;
+}
+
+.account-card {
+    width: 100%;
+    max-width: 450px;
+
+    padding: 35px;
+
+    background: #151515;
+
+    border-radius: 18px;
+
+    color: #ffffff;
+
+    text-align: center;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Avatar */
+
+.account-avatar {
+    width: 70px;
+    height: 70px;
+
+    margin: 0 auto 15px;
+
+    border-radius: 50%;
+
+    background: #ff6b00;
+
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+    font-weight: 700;
+}
+
+
+/* Name */
+
+.account-card h1 {
+    margin: 0 0 6px;
+
+    font-size: 24px;
+}
+
+.account-email {
+    margin: 0;
+
+    color: #999999;
+
+    font-size: 13px;
+}
+
+
+/* Information */
+
+.account-info {
+    margin-top: 25px;
+
+    border-top: 1px solid #2c2c2c;
+}
+
+.account-info-row {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 15px 0;
+
+    border-bottom: 1px solid #2c2c2c;
+
+    text-align: left;
+}
+
+.account-info-row span {
+    color: #888888;
+
+    font-size: 12px;
+}
+
+.account-info-row strong {
+    color: #ffffff;
+
+    font-size: 13px;
+
+    text-align: right;
+}
+
+
+/* My Orders */
+
+.account-action-button {
+    width: 100%;
+
+    height: 42px;
+
+    margin-top: 25px;
+
+    border: 1px solid #ff6b00;
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: #ff6b00;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.account-action-button:hover {
+    background: #ff6b00;
+
+    color: #ffffff;
+}
+
+
+/* Logout */
+
+.logout-button {
+    width: 100%;
+
+    height: 42px;
+
+    margin-top: 10px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #ff6b00;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.logout-button:hover {
+    background: #ff8126;
+}

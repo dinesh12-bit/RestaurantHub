@@ -1,0 +1,794 @@
+/* =========================================================
+   RESTAURANTHUB - ABOUT PAGE
+========================================================= */
+
+.about-page {
+    width: 100%;
+
+    background: #0b0b0b;
+
+    color: #ffffff;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   ABOUT HERO
+========================================================= */
+
+.about-hero {
+    width: 100%;
+    min-height: 390px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 70px 60px;
+
+    background:
+            radial-gradient(
+                    circle at 75% 45%,
+                    rgba(255, 107, 0, 0.14),
+                    transparent 32%
+            ),
+            linear-gradient(
+                    90deg,
+                    #0b0b0b 0%,
+                    #0f0f0f 55%,
+                    #111111 100%
+            );
+
+    box-sizing: border-box;
+}
+
+.about-hero-content {
+    width: 100%;
+    max-width: 680px;
+}
+
+.about-small-title {
+    margin: 0 0 17px;
+
+    color: #ff6b00;
+
+    font-size: 13px;
+    font-weight: 750;
+
+    letter-spacing: 2px;
+}
+
+.about-hero h1 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(48px, 6vw, 76px);
+
+    line-height: 1.02;
+
+    letter-spacing: -2px;
+
+    font-weight: 700;
+}
+
+.about-hero h1 span {
+    color: #ff6b00;
+
+    font-style: italic;
+}
+
+.about-hero-description {
+    max-width: 570px;
+
+    margin: 25px 0 0;
+
+    color: #a5a5a5;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   STORY SECTION
+========================================================= */
+
+.about-story {
+    width: 100%;
+
+    padding: 70px 60px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.5fr)
+        minmax(280px, 0.7fr);
+
+    gap: 70px;
+
+    align-items: center;
+
+    background: #0b0b0b;
+
+    box-sizing: border-box;
+}
+
+.about-story-content {
+    max-width: 720px;
+}
+
+.about-section-label {
+    margin: 0 0 12px;
+
+    color: #ff6b00;
+
+    font-size: 11px;
+
+    font-weight: 750;
+
+    letter-spacing: 1.8px;
+}
+
+.about-story h2 {
+    margin: 0 0 20px;
+
+    color: #ffffff;
+
+    font-size: 35px;
+
+    line-height: 1.2;
+
+    font-weight: 750;
+}
+
+.about-story h2 span {
+    color: #ff6b00;
+}
+
+.about-story-content > p:not(.about-section-label) {
+    margin: 0 0 15px;
+
+    color: #909090;
+
+    font-size: 14px;
+
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   STORY CARD
+========================================================= */
+
+.about-story-card {
+    min-height: 230px;
+
+    padding: 30px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    justify-content: center;
+
+    background: #151515;
+
+    border: 1px solid #292929;
+
+    border-radius: 16px;
+
+    box-sizing: border-box;
+}
+
+.story-card-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 20px;
+
+    border-radius: 13px;
+
+    background: rgba(255, 107, 0, 0.11);
+
+    border: 1px solid rgba(255, 107, 0, 0.25);
+
+    color: #ff6b00;
+}
+
+.about-story-card h3 {
+    margin: 0 0 9px;
+
+    color: #ffffff;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+.about-story-card p {
+    margin: 0;
+
+    color: #858585;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   VALUES SECTION
+========================================================= */
+
+.about-values {
+    width: 100%;
+
+    padding: 65px 60px 75px;
+
+    background: #101010;
+
+    border-top: 1px solid #1c1c1c;
+
+    box-sizing: border-box;
+}
+
+.about-section-heading {
+    text-align: center;
+
+    margin-bottom: 38px;
+}
+
+.about-section-heading p {
+    margin: 0 0 9px;
+
+    color: #ff6b00;
+
+    font-size: 11px;
+
+    font-weight: 750;
+
+    letter-spacing: 1.8px;
+}
+
+.about-section-heading h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 32px;
+
+    line-height: 1.2;
+
+    font-weight: 750;
+}
+
+.about-section-heading h2 span {
+    color: #ff6b00;
+}
+
+
+/* =========================================================
+   VALUE GRID
+========================================================= */
+
+.about-value-grid {
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+.about-value-card {
+    min-width: 0;
+
+    min-height: 205px;
+
+    padding: 25px 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background: #151515;
+
+    border: 1px solid #292929;
+
+    border-radius: 13px;
+
+    box-sizing: border-box;
+
+    transition:
+            border-color 0.2s ease,
+            transform 0.2s ease;
+}
+
+.about-value-card:hover {
+    border-color: rgba(255, 107, 0, 0.55);
+
+    transform: translateY(-3px);
+}
+
+.about-value-icon {
+    width: 52px;
+    height: 52px;
+
+    margin-bottom: 17px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: rgba(255, 107, 0, 0.10);
+
+    color: #ff6b00;
+
+    border: 1px solid rgba(255, 107, 0, 0.20);
+}
+
+.about-value-card h3 {
+    margin: 0 0 9px;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 700;
+}
+
+.about-value-card p {
+    max-width: 210px;
+
+    margin: 0;
+
+    color: #858585;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.about-cta {
+    width: 100%;
+
+    padding: 45px 60px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    background:
+            linear-gradient(
+                    90deg,
+                    #151515,
+                    #111111
+            );
+
+    border-top: 1px solid #292929;
+
+    box-sizing: border-box;
+}
+
+.about-cta p {
+    margin: 0 0 8px;
+
+    color: #ff6b00;
+
+    font-size: 10px;
+
+    font-weight: 750;
+
+    letter-spacing: 1.5px;
+}
+
+.about-cta h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 27px;
+
+    line-height: 1.25;
+}
+
+.about-cta h2 span {
+    color: #ff6b00;
+}
+
+.about-cta button {
+    flex-shrink: 0;
+
+    min-width: 145px;
+
+    height: 43px;
+
+    padding: 0 20px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #ff6b00;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+            background 0.2s ease,
+            transform 0.15s ease;
+}
+
+.about-cta button:hover {
+    background: #ff8126;
+}
+
+.about-cta button:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================================================
+   LARGE TABLET
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .about-hero {
+        padding: 60px 40px;
+    }
+
+    .about-story {
+        padding: 60px 40px;
+
+        gap: 45px;
+    }
+
+    .about-values {
+        padding: 55px 40px 65px;
+    }
+
+    .about-cta {
+        padding: 40px;
+    }
+
+    .about-value-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        max-width: 800px;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .about-hero {
+        min-height: 340px;
+
+        padding: 55px 30px;
+    }
+
+    .about-hero h1 {
+        font-size: 55px;
+    }
+
+    .about-hero-description {
+        font-size: 14px;
+    }
+
+
+    .about-story {
+        grid-template-columns: 1fr;
+
+        padding: 55px 30px;
+
+        gap: 35px;
+    }
+
+    .about-story-content {
+        max-width: 100%;
+    }
+
+    .about-story-card {
+        min-height: 190px;
+
+        max-width: 500px;
+    }
+
+
+    .about-values {
+        padding: 50px 30px 60px;
+    }
+
+    .about-section-heading {
+        margin-bottom: 30px;
+    }
+
+    .about-section-heading h2 {
+        font-size: 28px;
+    }
+
+
+    .about-cta {
+        padding: 35px 30px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .about-hero {
+        min-height: 330px;
+
+        padding: 50px 18px;
+
+        align-items: center;
+    }
+
+    .about-small-title {
+        margin-bottom: 13px;
+
+        font-size: 10px;
+
+        letter-spacing: 1.4px;
+    }
+
+    .about-hero h1 {
+        font-size: 43px;
+
+        letter-spacing: -1px;
+    }
+
+    .about-hero-description {
+        margin-top: 18px;
+
+        font-size: 12px;
+
+        line-height: 1.6;
+    }
+
+
+    .about-story {
+        padding: 45px 16px;
+
+        gap: 25px;
+    }
+
+    .about-section-label {
+        font-size: 9px;
+    }
+
+    .about-story h2 {
+        font-size: 27px;
+
+        margin-bottom: 15px;
+    }
+
+    .about-story-content > p:not(.about-section-label) {
+        font-size: 12px;
+
+        line-height: 1.7;
+    }
+
+    .about-story-card {
+        min-height: 185px;
+
+        padding: 25px 20px;
+    }
+
+
+    .about-values {
+        padding: 45px 14px 50px;
+    }
+
+    .about-section-heading {
+        margin-bottom: 24px;
+    }
+
+    .about-section-heading p {
+        font-size: 9px;
+    }
+
+    .about-section-heading h2 {
+        font-size: 25px;
+    }
+
+
+    .about-value-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+    }
+
+    .about-value-card {
+        min-height: 175px;
+
+        padding: 18px 10px;
+    }
+
+    .about-value-icon {
+        width: 44px;
+        height: 44px;
+
+        margin-bottom: 13px;
+    }
+
+    .about-value-card h3 {
+        font-size: 12px;
+    }
+
+    .about-value-card p {
+        font-size: 9px;
+    }
+
+
+    .about-cta {
+        padding: 35px 16px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 22px;
+    }
+
+    .about-cta h2 {
+        font-size: 23px;
+    }
+
+    .about-cta button {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .about-hero {
+        min-height: 300px;
+
+        padding: 42px 14px;
+    }
+
+    .about-hero h1 {
+        font-size: 37px;
+    }
+
+    .about-hero-description {
+        font-size: 11px;
+    }
+
+
+    .about-story {
+        padding: 40px 12px;
+    }
+
+    .about-story h2 {
+        font-size: 24px;
+    }
+
+    .about-story-content > p:not(.about-section-label) {
+        font-size: 11px;
+    }
+
+
+    .about-values {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .about-section-heading h2 {
+        font-size: 22px;
+    }
+
+    .about-value-grid {
+        gap: 8px;
+    }
+
+    .about-value-card {
+        min-height: 160px;
+
+        padding: 15px 8px;
+    }
+
+    .about-value-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .about-value-card h3 {
+        font-size: 11px;
+    }
+
+    .about-value-card p {
+        font-size: 8px;
+    }
+
+
+    .about-cta {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 350px) {
+
+    .about-hero {
+        min-height: 285px;
+    }
+
+    .about-hero h1 {
+        font-size: 32px;
+    }
+
+    .about-value-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-value-card {
+        min-height: 145px;
+    }
+}
