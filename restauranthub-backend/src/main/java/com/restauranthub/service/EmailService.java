@@ -1,18 +1,22 @@
 package com.restauranthub.service;
 
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 @Service
 public class EmailService {
 
-    private final JavaMailSender mailSender;
+    @Value("${RESEND_API_KEY:}")
+    private String resendApiKey;
 
-    public EmailService(JavaMailSender mailSender) {
-        this.mailSender = mailSender;
-    }
+    private final HttpClient httpClient =
+            HttpClient.newBuilder().build();
 
     @Async("emailTaskExecutor")
     public void sendOrderConfirmationEmail(
@@ -23,50 +27,130 @@ public class EmailService {
 
         try {
 
-            System.out.println(
-                    "📧 EMAIL THREAD STARTED");
+            System.out.println("================================");
+            System.out.println("📧 RESEND EMAIL STARTED");
+            System.out.println("📧 Email : " + toEmail);
+            System.out.println("📧 Order ID : " + orderId);
+            System.out.println("================================");
 
-            System.out.println(
-                    "📧 Sending email to : "
-                            + toEmail);
+            if (resendApiKey == null ||
+                    resendApiKey.isBlank()) {
 
-            SimpleMailMessage message =
-                    new SimpleMailMessage();
+                System.out.println(
+                        "❌ RESEND_API_KEY is missing"
+                );
 
-            message.setTo(toEmail);
+                return;
+            }
 
-            message.setSubject(
-                    "Restaurant Hub - Order Confirmed");
+            String subject =
+                    "Restaurant Hub - Order Confirmed";
 
-            message.setText(
+            String text =
                     "Hello,\n\n" +
                             "Your order has been placed successfully.\n\n" +
                             "Order ID : " + orderId + "\n" +
                             "Total Amount : ₹" + totalAmount + "\n\n" +
-                            "Thank you for ordering with Restaurant Hub."
-            );
+                            "Thank you for ordering with Restaurant Hub.";
 
-            mailSender.send(message);
+            String jsonBody =
+                    "{"
+                            + "\"from\":\"Restaurant Hub <onboarding@resend.dev>\","
+                            + "\"to\":[\"" + escapeJson(toEmail) + "\"],"
+                            + "\"subject\":\"" + escapeJson(subject) + "\","
+                            + "\"text\":\"" + escapeJson(text) + "\""
+                            + "}";
+
+            HttpRequest request =
+                    HttpRequest.newBuilder()
+                            .uri(URI.create(
+                                    "https://api.resend.com/emails"
+                            ))
+                            .header(
+                                    "Authorization",
+                                    "Bearer " + resendApiKey
+                            )
+                            .header(
+                                    "Content-Type",
+                                    "application/json"
+                            )
+                            .header(
+                                    "User-Agent",
+                                    "RestaurantHub/1.0"
+                            )
+                            .POST(
+                                    HttpRequest.BodyPublishers
+                                            .ofString(jsonBody)
+                            )
+                            .build();
+
+            HttpResponse<String> response =
+                    httpClient.send(
+                            request,
+                            HttpResponse.BodyHandlers.ofString()
+                    );
 
             System.out.println(
-                    "✅ Confirmation Email Sent");
+                    "📧 Resend HTTP Status : "
+                            + response.statusCode()
+            );
+
+            System.out.println(
+                    "📧 Resend Response : "
+                            + response.body()
+            );
+
+            if (response.statusCode() >= 200 &&
+                    response.statusCode() < 300) {
+
+                System.out.println(
+                        "✅ RESEND EMAIL SENT SUCCESSFULLY"
+                );
+
+            } else {
+
+                System.out.println(
+                        "❌ RESEND EMAIL FAILED"
+                );
+            }
+
+            System.out.println("================================");
 
         } catch (Exception e) {
 
             System.out.println(
-                    "⚠️ EMAIL FAILED");
+                    "❌ RESEND EMAIL EXCEPTION"
+            );
 
             System.out.println(
-                    "⚠️ Email : " + toEmail);
+                    "❌ Email : " + toEmail
+            );
 
             System.out.println(
-                    "⚠️ Order ID : " + orderId);
+                    "❌ Order ID : " + orderId
+            );
 
             System.out.println(
-                    "⚠️ Reason : " + e.getMessage());
+                    "❌ Reason : " + e.getMessage()
+            );
 
-            // IMPORTANT:
+            System.out.println("================================");
+
             // Email failure must NOT affect the order.
         }
+    }
+
+    private String escapeJson(String value) {
+
+        if (value == null) {
+            return "";
+        }
+
+        return value
+                .replace("\\", "\\\\")
+                .replace("\"", "\\\"")
+                .replace("\n", "\\n")
+                .replace("\r", "\\r")
+                .replace("\t", "\\t");
     }
 }
