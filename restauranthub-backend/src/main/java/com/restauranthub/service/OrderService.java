@@ -6,10 +6,10 @@ import com.restauranthub.entity.*;
 import com.restauranthub.exception.ResourceNotFoundException;
 import com.restauranthub.mapper.OrderMapper;
 import com.restauranthub.repository.*;
-import com.restauranthub.service.EmailService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -42,57 +42,107 @@ public class OrderService {
         this.userRepository = userRepository;
         this.emailService = emailService;
         this.couponService = couponService;
-
     }
 
-    @Transactional
-    public OrderResponse placeOrder(Long userId,
-                                    PlaceOrderRequest request) {
+    // =========================================================
+    // PLACE ORDER
+    // =========================================================
 
-        // Find User
+    @Transactional
+    public OrderResponse placeOrder(
+            Long userId,
+            PlaceOrderRequest request) {
+
+        // -----------------------------------------------------
+        // 1. Find User
+        // -----------------------------------------------------
+
         User user = userRepository.findById(userId)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("User not found"));
 
-        // Find Address
-        Address address = addressRepository.findById(request.getAddressId())
+        // -----------------------------------------------------
+        // 2. Find Address
+        // -----------------------------------------------------
+
+        Address address = addressRepository.findById(
+                        request.getAddressId()
+                )
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Address not found"));
 
-        // Find Cart
+        // -----------------------------------------------------
+        // 3. Find Cart
+        // -----------------------------------------------------
+
         Cart cart = cartRepository.findByUser(user)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Cart not found"));
 
-        if (cart.getItems().isEmpty()) {
+        // -----------------------------------------------------
+        // 4. Check Cart
+        // -----------------------------------------------------
+
+        if (cart.getItems() == null || cart.getItems().isEmpty()) {
             throw new RuntimeException("Cart is empty");
         }
 
-        // Calculate Order Amount
-        java.math.BigDecimal orderAmount = cart.getTotalAmount();
+        // -----------------------------------------------------
+        // 5. Calculate Order Amount
+        // -----------------------------------------------------
 
-        java.math.BigDecimal discount = java.math.BigDecimal.ZERO;
+        BigDecimal orderAmount = cart.getTotalAmount();
 
-// Apply Coupon if provided
-        if (request.getCouponCode() != null &&
-                !request.getCouponCode().isBlank()) {
+        if (orderAmount == null) {
+            orderAmount = BigDecimal.ZERO;
+        }
+
+        BigDecimal discount = BigDecimal.ZERO;
+
+        // -----------------------------------------------------
+        // 6. Apply Coupon
+        // -----------------------------------------------------
+
+        if (request.getCouponCode() != null
+                && !request.getCouponCode().isBlank()) {
 
             discount = couponService.calculateDiscount(
                     request.getCouponCode(),
                     orderAmount
             );
+
+            if (discount == null) {
+                discount = BigDecimal.ZERO;
+            }
         }
 
-// Final Amount
-        java.math.BigDecimal finalAmount =
+        // -----------------------------------------------------
+        // 7. Final Amount
+        // -----------------------------------------------------
+
+        BigDecimal finalAmount =
                 orderAmount.subtract(discount);
 
+        // Never allow negative amount
+        if (finalAmount.compareTo(BigDecimal.ZERO) < 0) {
+            finalAmount = BigDecimal.ZERO;
+        }
+
+        System.out.println("=================================");
+        System.out.println("       PLACE ORDER");
+        System.out.println("=================================");
+        System.out.println("User ID      : " + userId);
+        System.out.println("User Email   : " + user.getEmail());
+        System.out.println("Address ID   : " + request.getAddressId());
         System.out.println("Cart Total   : ₹" + orderAmount);
         System.out.println("Coupon       : " + request.getCouponCode());
         System.out.println("Discount     : ₹" + discount);
         System.out.println("Final Amount : ₹" + finalAmount);
 
-// Create Order
+        // -----------------------------------------------------
+        // 8. Create Order
+        // -----------------------------------------------------
+
         Order order = Order.builder()
                 .user(user)
                 .address(address)
@@ -101,9 +151,14 @@ public class OrderService {
 
         Order savedOrder = orderRepository.save(order);
 
-        System.out.println("✅ Order Saved : " + savedOrder.getId());
+        System.out.println(
+                "✅ Order Saved : " + savedOrder.getId()
+        );
 
-        // Copy Cart Items to Order Items
+        // -----------------------------------------------------
+        // 9. Copy Cart Items -> Order Items
+        // -----------------------------------------------------
+
         for (CartItem cartItem : cart.getItems()) {
 
             OrderItem orderItem = OrderItem.builder()
@@ -119,28 +174,68 @@ public class OrderService {
 
             savedOrder.getItems().add(orderItem);
 
-            System.out.println("✅ Order Item Saved");
+            System.out.println(
+                    "✅ Order Item Saved : "
+                            + cartItem.getFood().getName()
+            );
         }
 
-        // Clear Cart
+        // -----------------------------------------------------
+        // 10. Clear Cart
+        // -----------------------------------------------------
+
         cartItemRepository.deleteAll(cart.getItems());
 
         cart.getItems().clear();
-        cart.setTotalAmount(java.math.BigDecimal.ZERO);
+
+        cart.setTotalAmount(BigDecimal.ZERO);
 
         cartRepository.save(cart);
 
         System.out.println("✅ Cart Cleared");
 
-        emailService.sendOrderConfirmationEmail(
-                user.getEmail(),
-                savedOrder.getId(),
-                savedOrder.getTotalAmount().doubleValue()
+        // -----------------------------------------------------
+        // 11. Send Confirmation Email
+        //
+        // IMPORTANT:
+        // Email failure must NOT cancel the order.
+        // -----------------------------------------------------
+
+        try {
+
+            emailService.sendOrderConfirmationEmail(
+                    user.getEmail(),
+                    savedOrder.getId(),
+                    savedOrder.getTotalAmount().doubleValue()
+            );
+
+            System.out.println(
+                    "✅ Confirmation Email Sent"
+            );
+
+        } catch (Exception e) {
+
+            System.out.println(
+                    "⚠️ Order created successfully, "
+                            + "but confirmation email failed."
+            );
+
+            System.out.println(
+                    "Email Error : " + e.getMessage()
+            );
+        }
+
+        // -----------------------------------------------------
+        // 12. Return Order Response
+        // -----------------------------------------------------
+
+        System.out.println(
+                "✅ ORDER COMPLETED : "
+                        + savedOrder.getId()
         );
 
-        System.out.println("✅ Confirmation Email Sent");
+        System.out.println("=================================");
 
-        // Temporary Response (Mapper skip)
         return OrderResponse.builder()
                 .orderId(savedOrder.getId())
                 .orderDate(savedOrder.getOrderDate())
@@ -150,6 +245,11 @@ public class OrderService {
                 .items(List.of())
                 .build();
     }
+
+    // =========================================================
+    // GET MY ORDERS
+    // =========================================================
+
     public List<OrderResponse> getMyOrders(Long userId) {
 
         User user = userRepository.findById(userId)
@@ -161,6 +261,11 @@ public class OrderService {
                 .map(OrderMapper::toOrderResponse)
                 .toList();
     }
+
+    // =========================================================
+    // GET ORDER BY ID
+    // =========================================================
+
     public OrderResponse getOrderById(Long id) {
 
         Order order = orderRepository.findById(id)
@@ -169,6 +274,11 @@ public class OrderService {
 
         return OrderMapper.toOrderResponse(order);
     }
+
+    // =========================================================
+    // CANCEL ORDER
+    // =========================================================
+
     @Transactional
     public OrderResponse cancelOrder(Long id) {
 
@@ -180,9 +290,9 @@ public class OrderService {
                 com.restauranthub.entity.enums.OrderStatus.CANCELLED
         );
 
-        Order updatedOrder = orderRepository.save(order);
+        Order updatedOrder =
+                orderRepository.save(order);
 
         return OrderMapper.toOrderResponse(updatedOrder);
     }
-
 }
