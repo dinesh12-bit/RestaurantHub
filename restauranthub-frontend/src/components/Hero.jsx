@@ -16,7 +16,7 @@ function Hero() {
     const slides = [
 
         {
-            image: "/images/hero1-pizza.png",
+            image: "/images/hero1-pizza.webp",
             smallTitle: "WELCOME TO RESTAURANTHUB",
             title: "Good Food",
             highlight: "Great Mood",
@@ -30,7 +30,7 @@ function Hero() {
         },
 
         {
-            image: "/images/hero-burger.png",
+            image: "/images/hero-burger.webp",
             smallTitle: "FRESH • JUICY • DELICIOUS",
             title: "Bite Into",
             highlight: "Happiness",
@@ -44,7 +44,7 @@ function Hero() {
         },
 
         {
-            image: "/images/hero-pasta.png",
+            image: "/images/hero-pasta.webp",
             smallTitle: "AUTHENTIC TASTE",
             title: "Taste That",
             highlight: "Feels Like Home",
@@ -126,9 +126,12 @@ function Hero() {
             ===================================== */}
 
             <img
+                key={slide.image}
                 src={slide.image}
                 alt="RestaurantHub food"
                 className="hero-background-image"
+                loading="eager"
+                decoding="async"
             />
 
 

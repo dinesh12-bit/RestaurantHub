@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../../services/api";
 import "./AdminFoods.css";
 
+
 function AdminFoods() {
 
     const [foods, setFoods] = useState([]);
@@ -9,6 +10,7 @@ function AdminFoods() {
 
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
+    const [uploadingImage, setUploadingImage] = useState(false);
     const [error, setError] = useState("");
 
     const [search, setSearch] = useState("");
@@ -110,6 +112,101 @@ function AdminFoods() {
 
 
     // =====================================================
+    // IMAGE UPLOAD - CLOUDINARY
+    // =====================================================
+
+    const handleImageUpload = async (event) => {
+
+        const file = event.target.files?.[0];
+
+        if (!file) {
+            return;
+        }
+
+
+        // IMAGE TYPE VALIDATION
+        if (!file.type.startsWith("image/")) {
+
+            alert(
+                "Please select a valid image file"
+            );
+
+            event.target.value = "";
+
+            return;
+        }
+
+
+        // 5 MB LIMIT
+        if (file.size > 5 * 1024 * 1024) {
+
+            alert(
+                "Image size must be less than 5 MB"
+            );
+
+            event.target.value = "";
+
+            return;
+        }
+
+
+        try {
+
+            setUploadingImage(true);
+
+
+            const formData =
+                new FormData();
+
+            formData.append(
+                "file",
+                file
+            );
+
+
+            const response =
+                await api.post(
+                    "/admin/foods/upload-image",
+                    formData
+                );
+
+
+            // SAVE CLOUDINARY URL
+            setForm(previous => ({
+                ...previous,
+                imageUrl: response.data
+            }));
+
+
+            alert(
+                "Image uploaded successfully"
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Image upload failed:",
+                error
+            );
+
+
+            alert(
+                error.response?.data ||
+                "Image upload failed"
+            );
+
+
+        } finally {
+
+            setUploadingImage(false);
+
+            event.target.value = "";
+        }
+    };
+
+
+    // =====================================================
     // OPEN ADD FORM
     // =====================================================
 
@@ -159,7 +256,7 @@ function AdminFoods() {
 
     const closeForm = () => {
 
-        if (saving) {
+        if (saving || uploadingImage) {
             return;
         }
 
@@ -176,34 +273,43 @@ function AdminFoods() {
 
         event.preventDefault();
 
+
         if (!form.name.trim()) {
 
             alert("Food name is required");
+
             return;
         }
+
 
         if (!form.description.trim()) {
 
             alert("Description is required");
+
             return;
         }
+
 
         if (!form.price || Number(form.price) <= 0) {
 
             alert("Please enter a valid price");
+
             return;
         }
+
 
         if (!form.categoryId) {
 
             alert("Please select a category");
+
             return;
         }
 
 
         const requestData = {
 
-            name: form.name.trim(),
+            name:
+                form.name.trim(),
 
             description:
                 form.description.trim(),
@@ -229,7 +335,10 @@ function AdminFoods() {
             let response;
 
 
+            // =================================================
             // UPDATE
+            // =================================================
+
             if (editingFood) {
 
                 response =
@@ -249,7 +358,11 @@ function AdminFoods() {
 
             }
 
-            // ADD
+
+                // =================================================
+                // ADD
+            // =================================================
+
             else {
 
                 response =
@@ -257,6 +370,7 @@ function AdminFoods() {
                         "/admin/foods",
                         requestData
                     );
+
 
                 setFoods(previous => [
                     response.data,
@@ -286,10 +400,12 @@ function AdminFoods() {
                 error
             );
 
+
             alert(
                 error.response?.data?.message ||
                 "Failed to save food"
             );
+
 
         } finally {
 
@@ -309,6 +425,7 @@ function AdminFoods() {
                 `Are you sure you want to delete "${food.name}"?`
             );
 
+
         if (!confirmed) {
             return;
         }
@@ -320,6 +437,7 @@ function AdminFoods() {
                 `/admin/foods/${food.id}`
             );
 
+
             setFoods(previous =>
                 previous.filter(
                     item =>
@@ -327,12 +445,14 @@ function AdminFoods() {
                 )
             );
 
+
         } catch (error) {
 
             console.error(
                 "Failed to delete food:",
                 error
             );
+
 
             alert(
                 error.response?.data?.message ||
@@ -355,6 +475,7 @@ function AdminFoods() {
                     `/admin/foods/${food.id}/availability`
                 );
 
+
             setFoods(previous =>
                 previous.map(item =>
                     item.id === food.id
@@ -363,12 +484,14 @@ function AdminFoods() {
                 )
             );
 
+
         } catch (error) {
 
             console.error(
                 "Failed to update availability:",
                 error
             );
+
 
             alert(
                 error.response?.data?.message ||
@@ -388,9 +511,11 @@ function AdminFoods() {
             const keyword =
                 search.toLowerCase().trim();
 
+
             if (!keyword) {
                 return true;
             }
+
 
             return (
                 food.name
@@ -559,6 +684,7 @@ function AdminFoods() {
                             key={food.id}
                         >
 
+
                             {/* IMAGE */}
 
                             <div className="admin-food-image">
@@ -720,6 +846,7 @@ function AdminFoods() {
                         }
                     >
 
+
                         <div className="food-modal-header">
 
                             <div>
@@ -742,6 +869,10 @@ function AdminFoods() {
                             <button
                                 className="food-modal-close"
                                 onClick={closeForm}
+                                disabled={
+                                    saving ||
+                                    uploadingImage
+                                }
                             >
                                 ×
                             </button>
@@ -753,6 +884,7 @@ function AdminFoods() {
                             onSubmit={handleSubmit}
                             className="food-form"
                         >
+
 
                             {/* NAME */}
 
@@ -857,23 +989,56 @@ function AdminFoods() {
                             </div>
 
 
-                            {/* IMAGE URL */}
+                            {/* =================================================
+                                CLOUDINARY IMAGE UPLOAD
+                            ================================================= */}
 
                             <div className="food-form-group">
 
                                 <label>
-                                    Image URL
+                                    Food Image
                                 </label>
 
                                 <input
-                                    type="text"
-                                    name="imageUrl"
-                                    value={form.imageUrl}
-                                    onChange={handleChange}
-                                    placeholder="https://example.com/food.jpg"
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleImageUpload}
+                                    disabled={
+                                        uploadingImage ||
+                                        saving
+                                    }
                                 />
 
+                                {uploadingImage && (
+
+                                    <p>
+                                        Uploading image...
+                                    </p>
+
+                                )}
+
                             </div>
+
+
+                            {/* IMAGE URL - READ ONLY */}
+
+                            {form.imageUrl && (
+
+                                <div className="food-form-group">
+
+                                    <label>
+                                        Cloudinary Image URL
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        value={form.imageUrl}
+                                        readOnly
+                                    />
+
+                                </div>
+
+                            )}
 
 
                             {/* IMAGE PREVIEW */}
@@ -926,7 +1091,10 @@ function AdminFoods() {
                                     type="button"
                                     className="food-cancel-btn"
                                     onClick={closeForm}
-                                    disabled={saving}
+                                    disabled={
+                                        saving ||
+                                        uploadingImage
+                                    }
                                 >
                                     Cancel
                                 </button>
@@ -935,18 +1103,26 @@ function AdminFoods() {
                                 <button
                                     type="submit"
                                     className="food-save-btn"
-                                    disabled={saving}
+                                    disabled={
+                                        saving ||
+                                        uploadingImage
+                                    }
                                 >
+
                                     {
                                         saving
                                             ? "Saving..."
-                                            : editingFood
-                                                ? "Update Food"
-                                                : "Add Food"
+                                            : uploadingImage
+                                                ? "Uploading..."
+                                                : editingFood
+                                                    ? "Update Food"
+                                                    : "Add Food"
                                     }
+
                                 </button>
 
                             </div>
+
 
                         </form>
 
@@ -959,5 +1135,6 @@ function AdminFoods() {
         </div>
     );
 }
+
 
 export default AdminFoods;

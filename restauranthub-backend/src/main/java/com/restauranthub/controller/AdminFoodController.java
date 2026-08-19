@@ -7,6 +7,8 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.restauranthub.service.CloudinaryService;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -16,11 +18,14 @@ public class AdminFoodController {
 
     private final AdminFoodService adminFoodService;
 
-    public AdminFoodController(
-            AdminFoodService adminFoodService) {
+    private final CloudinaryService cloudinaryService;
 
-        this.adminFoodService =
-                adminFoodService;
+    public AdminFoodController(
+            AdminFoodService adminFoodService,
+            CloudinaryService cloudinaryService) {
+
+        this.adminFoodService = adminFoodService;
+        this.cloudinaryService = cloudinaryService;
     }
 
 
@@ -124,5 +129,28 @@ public class AdminFoodController {
         return ResponseEntity.ok(
                 adminFoodService.toggleAvailability(id)
         );
+    }
+
+    // =====================================================
+// UPLOAD FOOD IMAGE
+// =====================================================
+
+    @PostMapping("/upload-image")
+    public ResponseEntity<String> uploadFoodImage(
+            @RequestParam("file") MultipartFile file) {
+
+        try {
+
+            String imageUrl =
+                    cloudinaryService.uploadImage(file);
+
+            return ResponseEntity.ok(imageUrl);
+
+        } catch (Exception e) {
+
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Image upload failed: " + e.getMessage());
+        }
     }
 }
