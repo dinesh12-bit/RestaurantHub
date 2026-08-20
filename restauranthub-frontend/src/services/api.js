@@ -1,10 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://restauranthub-production-4dfe.up.railway.app/api",
-    headers: {
-        "Content-Type": "application/json"
-    }
+    baseURL: "https://restauranthub-production-4dfe.up.railway.app/api"
 });
 
 api.interceptors.request.use(
