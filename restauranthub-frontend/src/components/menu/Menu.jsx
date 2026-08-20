@@ -456,13 +456,13 @@ function Menu() {
                                         <img
                                             src={
                                                 food.imageUrl ||
-                                                "/images/food-placeholder.png"
+                                                "/images/food-placeholder.webp"
                                             }
                                             alt={food.name}
                                             onError={event => {
 
                                                 event.currentTarget.src =
-                                                    "/images/food-placeholder.png";
+                                                    "/images/food-placeholder.webp";
 
                                             }}
                                         />

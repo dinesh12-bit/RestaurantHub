@@ -638,14 +638,14 @@ function AdminCategories() {
                                     name="imageUrl"
                                     value={form.imageUrl}
                                     onChange={handleChange}
-                                    placeholder="/images/category-pizza.png"
+                                    placeholder="/images/category-pizza.webp"
                                 />
 
                                 <small className="category-image-help">
 
                                     Example:
                                     {" "}
-                                    /images/category-pizza.png
+                                    /images/category-pizza.webp
 
                                 </small>
 

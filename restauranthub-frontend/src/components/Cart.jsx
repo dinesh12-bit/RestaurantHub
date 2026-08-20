@@ -497,7 +497,7 @@ function Cart() {
                                     <img
                                         src={
                                             item.imageUrl ||
-                                            "/images/food-placeholder.png"
+                                            "/images/food-placeholder.webp"
                                         }
                                         alt={item.foodName}
                                         className="cart-food-image"
@@ -635,7 +635,7 @@ function Cart() {
                                         <img
                                             src={
                                                 item.imageUrl ||
-                                                "/images/food-placeholder.png"
+                                                "/images/food-placeholder.webp"
                                             }
                                             alt={item.foodName}
                                         />
